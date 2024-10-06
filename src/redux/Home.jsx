@@ -15,7 +15,7 @@ function Home() {
       .then((res) => res.json())
       .then((valid) => {
         if (valid.valid !== true) {
-          navigate("/login");
+          navigate("/register");
         }
       });
   }, []);
