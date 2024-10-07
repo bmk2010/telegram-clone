@@ -3,6 +3,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
+import BASE_URL from "../assets/url"
 import "react-toastify/dist/ReactToastify.css";
 
 function RegisterPage() {
@@ -14,7 +15,7 @@ function RegisterPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://127.0.0.1:5000/api/register", {
+    fetch(BASE_URL + "/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -35,18 +36,18 @@ function RegisterPage() {
   return (
     <>
       <ToastContainer />
-      <div className="bg-[#5D5FEF] flex justify-center">
-        <div className="bg-white py-5 px-5 rounded-xl mt-5">
+      <div className=" flex justify-center">
+        <div className=" py-5 px-5 rounded-xl mt-5">
           <h1 className="font-medium text-[40px] mb-5 text-center">
             Registratsiya
           </h1>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={(e) => handleSubmit(e)}
             className="flex flex-col gap-3 mt-10 items-center"
           >
             <input
               className="outline-none py-2 bg-[#c7c7c7] text-black rounded-xl px-2 max-w-[400px] w-full text-[24px]"
-              placeholder="Login o'ylab toping"
+              placeholder="Username o'ylab toping"
               value={loginInp}
               onChange={(e) => setLoginInp(e.target.value)}
             />
@@ -72,7 +73,7 @@ function RegisterPage() {
             </div>
             <button
               type="submit"
-              className="py-5 px-7 bg-[#5D5FEF] text-white rounded-md w-[100px]"
+              className="py-4 px-7 bg-[#5D5FEF] text-white rounded-md w-[400px]"
             >
               Kiritish
             </button>
@@ -80,9 +81,15 @@ function RegisterPage() {
           <p className="mt-10 max-w-[500px] w-full text-center text-gray-500">
             Registratsiyada kiritgan ma'lumotlaringiz hech kimga berilmaydi.
             Lekin {""}
-            <span className="text-red-500">
+            <span className="text-[#5D5FEF]">
               login va parolni eslab qolishingiz shart
             </span>
+          </p>
+          <p
+            onClick={() => navigate("/login")}
+            className="font-medium text-red-600 cursor-pointer text-center mt-5"
+          >
+            Agar akkountingiz bo'lsa login qiling
           </p>
         </div>
       </div>

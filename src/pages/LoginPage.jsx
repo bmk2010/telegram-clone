@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BASE_URL from "../assets/url";
 
 function LoginPage() {
   const [loginInp, setLoginInp] = useState("");
@@ -16,7 +17,7 @@ function LoginPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://127.0.0.1:5000/api/login", {
+    fetch(BASE_URL + "/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -27,7 +28,7 @@ function LoginPage() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        
+
         if (data.error) {
           toast.error("Login yoki parol xato kiritildi");
         } else {
@@ -41,9 +42,9 @@ function LoginPage() {
   };
 
   return (
-    <div className="bg-[#5D5FEF] flex justify-center">
+    <div className="bg-[] flex justify-center">
       <ToastContainer />
-      <div className="bg-white py-5 px-5 rounded-xl mt-5">
+      <div className="bg-[] py-5 px-5 rounded-xl mt-5">
         <h1 className="font-medium text-[40px] mb-5 text-center">Login</h1>
         <form
           onSubmit={handleSubmit}
@@ -51,7 +52,7 @@ function LoginPage() {
         >
           <input
             className="outline-none py-2 bg-[#c7c7c7] text-black rounded-xl px-2 max-w-[400px] w-full text-[24px]"
-            placeholder="Loginingizni kiriting"
+            placeholder="Username ingizni  kiriting"
             value={loginInp}
             onChange={(e) => setLoginInp(e.target.value)}
           />
@@ -77,7 +78,7 @@ function LoginPage() {
           </div>
           <button
             type="submit"
-            className="py-5 px-7 bg-[#5D5FEF] text-white rounded-md w-[100px]"
+            className="py-4 px-7 bg-[#5D5FEF] text-white rounded-md w-[400px]"
           >
             Kiritish
           </button>
